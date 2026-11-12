@@ -1,0 +1,39 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+
+# Maven
+target/
+
+# Java
+*.class
+
+# Environment variables and secrets
+.env
+.env.*
+
+# SQLite database
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploaded files and temporary data
+uploads/
+data/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Operating system
+.DS_Store
+Thumbs.db

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <display-name>DataLens</display-name>
+
+    <welcome-file-list>
+        <welcome-file>landing.html</welcome-file>
+    </welcome-file-list>
+
+    <!-- ======================================================== -->
+    <!-- Authentication & Security Filter                         -->
+    <!-- ======================================================== -->
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.datalens.filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- ======================================================== -->
+    <!-- Authentication Servlets                                  -->
+    <!-- ======================================================== -->
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.datalens.controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/api/register</url-pattern>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.datalens.controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/api/login</url-pattern>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SessionServlet</servlet-name>
+        <servlet-class>com.datalens.controller.SessionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SessionServlet</servlet-name>
+        <url-pattern>/api/session</url-pattern>
+        <url-pattern>/session</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.datalens.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/api/logout</url-pattern>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <!-- ======================================================== -->
+    <!-- Dataset & Dashboard Servlets                             -->
+    <!-- ======================================================== -->
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>com.datalens.controller.DashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/api/dashboard</url-pattern>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>com.datalens.controller.UploadServlet</servlet-class>
+        <multipart-config>
+            <location></location>
+            <max-file-size>104857600</max-file-size>
+            <max-request-size>115343360</max-request-size>
+            <file-size-threshold>2097152</file-size-threshold>
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/api/upload</url-pattern>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HistoryServlet</servlet-name>
+        <servlet-class>com.datalens.controller.HistoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HistoryServlet</servlet-name>
+        <url-pattern>/api/history</url-pattern>
+        <url-pattern>/history</url-pattern>
+        <url-pattern>/api/history/load</url-pattern>
+        <url-pattern>/history/load</url-pattern>
+        <url-pattern>/api/history/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PreviewServlet</servlet-name>
+        <servlet-class>com.datalens.controller.PreviewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PreviewServlet</servlet-name>
+        <url-pattern>/api/preview</url-pattern>
+        <url-pattern>/preview</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>QualityServlet</servlet-name>
+        <servlet-class>com.datalens.controller.QualityServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QualityServlet</servlet-name>
+        <url-pattern>/api/quality</url-pattern>
+        <url-pattern>/quality</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StatisticsServlet</servlet-name>
+        <servlet-class>com.datalens.controller.StatisticsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StatisticsServlet</servlet-name>
+        <url-pattern>/api/statistics</url-pattern>
+        <url-pattern>/statistics</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CleaningServlet</servlet-name>
+        <servlet-class>com.datalens.controller.CleaningServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CleaningServlet</servlet-name>
+        <url-pattern>/api/cleaning</url-pattern>
+        <url-pattern>/api/cleaning/preview</url-pattern>
+        <url-pattern>/api/cleaning/apply</url-pattern>
+        <url-pattern>/api/cleaning/restore</url-pattern>
+        <url-pattern>/api/cleaning/download</url-pattern>
+        <url-pattern>/api/clean</url-pattern>
+        <url-pattern>/clean</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FilterServlet</servlet-name>
+        <servlet-class>com.datalens.controller.FilterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilterServlet</servlet-name>
+        <url-pattern>/api/filter</url-pattern>
+        <url-pattern>/filter</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ValidationServlet</servlet-name>
+        <servlet-class>com.datalens.controller.ValidationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ValidationServlet</servlet-name>
+        <url-pattern>/api/validation</url-pattern>
+        <url-pattern>/validation</url-pattern>
+        <url-pattern>/api/validation/add</url-pattern>
+        <url-pattern>/api/validation/delete</url-pattern>
+        <url-pattern>/api/validation/export</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VisualizationServlet</servlet-name>
+        <servlet-class>com.datalens.controller.VisualizationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VisualizationServlet</servlet-name>
+        <url-pattern>/api/visualization</url-pattern>
+        <url-pattern>/visualization</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InsightsServlet</servlet-name>
+        <servlet-class>com.datalens.controller.InsightsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsightsServlet</servlet-name>
+        <url-pattern>/api/insights</url-pattern>
+        <url-pattern>/insights</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ComparisonServlet</servlet-name>
+        <servlet-class>com.datalens.controller.ComparisonServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ComparisonServlet</servlet-name>
+        <url-pattern>/api/comparison</url-pattern>
+        <url-pattern>/api/comparison/versions</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReportServlet</servlet-name>
+        <servlet-class>com.datalens.controller.ReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReportServlet</servlet-name>
+        <url-pattern>/api/report/executive</url-pattern>
+        <url-pattern>/api/report/executive-pdf</url-pattern>
+        <url-pattern>/api/report/dictionary</url-pattern>
+        <url-pattern>/api/report/quality-json</url-pattern>
+        <url-pattern>/api/report/audit-trail</url-pattern>
+        <url-pattern>/api/report/dataset</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SampleDataServlet</servlet-name>
+        <servlet-class>com.datalens.controller.SampleDataServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SampleDataServlet</servlet-name>
+        <url-pattern>/api/sample-data</url-pattern>
+        <url-pattern>/sample-data</url-pattern>
+    </servlet-mapping>
+</web-app>

@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dataset Quality, Statistics & Analysis Platform">
+  <meta property="og:title" content="DataLens">
+  <meta property="og:description" content="Dataset Quality, Statistics & Analysis Platform">
+  <title>DataLens — Dataset Quality, Statistics & Analysis Platform</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+
+  <!-- Chart.js for real visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- ==========================================
+         Sidebar Navigation
+         ========================================== -->
+    <aside id="sidebar" class="sidebar">
+      <!-- Brand Header -->
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <div class="brand-icon">
+            <div class="brand-bar b1"></div>
+            <div class="brand-bar b2"></div>
+            <div class="brand-bar b3"></div>
+          </div>
+          <div class="brand-text-wrap">
+            <span class="brand-title">DataLens</span>
+            <span class="brand-subtitle">Dataset Quality &amp; Analysis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 Navigation Menu Items (Independently scrollable) -->
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <!-- 1. Overview -->
+        <button type="button" class="nav-item active" data-section="overview">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Overview</span>
+        </button>
+
+        <!-- 2. Data Preview -->
+        <button type="button" class="nav-item" data-section="preview">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect width="18" height="18" x="3" y="3" rx="2"/>
+            <path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+          </svg>
+          <span>Data Preview</span>
+        </button>
+
+        <!-- 3. Data Quality -->
+        <button type="button" class="nav-item" data-section="quality">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span>Data Quality</span>
+        </button>
+
+        <!-- 4. Statistics -->
+        <button type="button" class="nav-item" data-section="statistics">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 3v18h18"/>
+            <path d="m19 9-5 5-4-4-3 3"/>
+          </svg>
+          <span>Statistics</span>
+        </button>
+
+        <!-- 5. Data Explorer -->
+        <button type="button" class="nav-item" data-section="explorer">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" x2="16.65" y1="21" y2="16.65"/>
+          </svg>
+          <span>Data Explorer</span>
+        </button>
+
+        <!-- 6. Cleaning Studio -->
+        <button type="button" class="nav-item" data-section="cleaning">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>
+          </svg>
+          <span>Cleaning Studio</span>
+        </button>
+
+        <!-- 7. Visualization -->
+        <button type="button" class="nav-item" data-section="visualization">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="18" x2="18" y1="20" y2="10"/>
+            <line x1="12" x2="12" y1="20" y2="4"/>
+            <line x1="6" x2="6" y1="20" y2="14"/>
+          </svg>
+          <span>Visualization</span>
+        </button>
+
+        <!-- 8. Validation Rules -->
+        <button type="button" class="nav-item" data-section="validation">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+          <span>Validation Rules</span>
+        </button>
+
+        <!-- 9. Version Comparison -->
+        <button type="button" class="nav-item" data-section="comparison">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="m16 3 4 4-4 4"/>
+            <path d="M20 7H4"/>
+            <path d="m8 21-4-4 4-4"/>
+            <path d="M4 17h16"/>
+          </svg>
+          <span>Version Comparison</span>
+        </button>
+
+        <!-- 10. Insights -->
+        <button type="button" class="nav-item" data-section="insights">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+            <path d="M9 18h6"/>
+            <path d="M10 22h4"/>
+          </svg>
+          <span>Insights</span>
+        </button>
+
+        <!-- 11. Reports & Exports -->
+        <button type="button" class="nav-item" data-section="reports">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          <span>Executive Reports</span>
+        </button>
+
+        <!-- 12. History -->
+        <button type="button" class="nav-item" data-section="history">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+            <path d="M12 7v5l4 2"/>
+          </svg>
+          <span>History &amp; Audit</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer (Pinned at bottom, non-clipping) -->
+      <div class="sidebar-footer">
+        <div id="sidebar-user-card" class="sidebar-user-card">
+          <div class="sidebar-user-left">
+            <div id="sidebar-user-avatar" class="user-avatar-circle">U</div>
+            <div class="sidebar-user-text">
+              <div id="sidebar-user-name" class="sidebar-user-name">User</div>
+              <div id="sidebar-user-email" class="sidebar-user-email">user@datalens.io</div>
+            </div>
+          </div>
+          <button type="button" id="sidebar-logout-btn" class="sidebar-btn-logout" title="Sign Out" aria-label="Sign Out">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Sidebar Backdrop Overlay for Mobile / Tablet Drawer -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+
+    <!-- ==========================================
+         Main Wrapper
+         ========================================== -->
+    <div class="main-wrapper">
+      
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-left">
+          <button type="button" id="menu-toggle-btn" class="menu-toggle-btn" aria-label="Toggle Sidebar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="4" x2="20" y1="12" y2="12"/>
+              <line x1="4" x2="20" y1="6" y2="6"/>
+              <line x1="4" x2="20" y1="18" y2="18"/>
+            </svg>
+          </button>
+          <h1 id="page-title" class="page-title">Overview</h1>
+        </div>
+
+        <div class="header-right">
+          <!-- Current Dataset Badge -->
+          <div class="dataset-status-pill">
+            <span class="pill-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </span>
+            <div class="pill-text">
+              <span class="pill-label">Current Dataset</span>
+              <span id="header-dataset-name" class="pill-value">No dataset loaded</span>
+            </div>
+          </div>
+
+          <!-- User Profile & Logout Widget -->
+          <div class="user-profile-widget" id="header-user-widget">
+            <div id="header-user-avatar" class="user-avatar-circle">U</div>
+            <div class="user-info-text">
+              <span id="header-user-name" class="user-welcome-label">Welcome, User</span>
+              <span id="header-user-email" class="user-email-label">user@datalens.io</span>
+            </div>
+            <button type="button" id="btn-header-logout" class="btn-header-logout" title="Sign Out" aria-label="Sign Out">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Body Container -->
+      <main class="content-body">
+        
+        <!-- ==========================================
+             SECTION 1: OVERVIEW
+             ========================================== -->
+        <section id="section-overview" class="page-section active">
+          
+          <!-- Quick Load Sample Datasets Strip -->
+          <div class="sample-dataset-strip">
+            <span style="font-size:0.82rem; font-weight:700; color:#166534;">Quick Load Sample Datasets:</span>
+            <button type="button" class="sample-btn" data-sample="ecommerce">E-Commerce Orders (28 rows, messy)</button>
+            <button type="button" class="sample-btn" data-sample="customer">Customer Quality Audit (26 rows, outliers)</button>
+            <button type="button" class="sample-btn" data-sample="sales">Sales Transactions (6 rows)</button>
+            <button type="button" class="sample-btn" data-sample="datapilot" style="background:#e0f2fe; color:#0369a1; border-color:#7dd3fc; font-weight:700;">DEMO_DATAPILOT.csv (31 rows, 13 cols)</button>
+            <button type="button" class="sample-btn" data-sample="validation" style="background:#fef3c7; color:#b45309; border-color:#fcd34d; font-weight:700;">DataLens_Validation_Test_Dataset.csv (31 rows, 13 cols)</button>
+            <span id="sample-load-status" style="font-size:0.78rem; font-weight:600; color:#15803d; margin-left:auto;"></span>
+          </div>
+
+          <!-- Upload New CSV Dataset Card -->
+          <div class="upload-card">
+            <h2 class="upload-header-title">Upload New CSV Dataset</h2>
+            
+            <div class="upload-grid">
+              <!-- Left: Dropzone -->
+              <div id="dropzone" class="dropzone">
+                <div class="cloud-icon-wrap">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                    <path d="m12 13-3-3m0 0-3 3m3-3v8"/>
+                  </svg>
+                </div>
+                <p class="dropzone-title">Drag &amp; Drop your CSV file here</p>
+                <span class="dropzone-or">or</span>
+                <button type="button" id="btn-choose-file" class="btn-choose-file">Choose File</button>
+                <input type="file" id="csv-file-input" accept=".csv" style="display: none;" />
+              </div>
+
+              <!-- Right: Selected File Information -->
+              <div class="selected-file-box">
+                <div class="file-info-group">
+                  <div class="file-info-label">Selected File</div>
+                  <div id="selected-file-name" class="file-info-value">No file selected</div>
+                </div>
+
+                <div class="file-info-group">
+                  <div class="file-info-label">File type</div>
+                  <div id="selected-file-type" class="file-info-value">-</div>
+                </div>
+
+                <div class="file-info-group">
+                  <div class="file-info-label">File size</div>
+                  <div id="selected-file-size" class="file-info-value">-</div>
+                </div>
+
+                <!-- Upload Progress Indicator -->
+                <div id="upload-progress-wrap" class="upload-progress-wrap" style="display:none; margin:10px 0;">
+                  <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:#475569; margin-bottom:4px;">
+                    <span id="upload-progress-label">Uploading...</span>
+                    <span id="upload-progress-percent">0%</span>
+                  </div>
+                  <div style="width:100%; height:6px; background:#e2e8f0; border-radius:3px; overflow:hidden;">
+                    <div id="upload-progress-bar" style="width:0%; height:100%; background:#2563eb; transition:width 0.15s ease;"></div>
+                  </div>
+                </div>
+
+                <div id="file-actions-wrap" class="file-actions-wrap">
+                  <button type="button" id="btn-upload-file" class="btn-upload-file">Upload</button>
+                  <button type="button" id="btn-remove-file" class="btn-remove-file">Remove File</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Alert Bar -->
+            <div id="info-alert-bar" class="info-alert-bar">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" x2="12" y1="16" y2="12"/>
+                <line x1="12" x2="12.01" y1="8" y2="8"/>
+              </svg>
+              <span id="info-alert-text">Please upload a CSV file to begin analysis</span>
+            </div>
+          </div>
+
+          <!-- 7 Metric Cards Row -->
+          <div class="metrics-grid">
+            <!-- 1. Total Rows -->
+            <div class="metric-card metric-rows">
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+              </div>
+              <div class="metric-info">
+                <span class="metric-label">Total Rows</span>
+                <span id="metric-rows-val" class="metric-value">0</span>
+              </div>
+            </div>
+
+            <!-- 2. Total Columns -->
+            <div class="metric-card metric-cols">
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect width="18" height="18" x="3" y="3" rx="2"/>
+                  <path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+                </svg>
+              </div>
+              <div class="metric-info">
+                <span class="metric-label">Total Columns</span>
+                <span id="metric-cols-val" class="metric-value">0</span>
+              </div>
+            </div>
+
+            <!-- 3. Numeric Columns -->
+            <div class="metric-card metric-num">
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 3v18h18"/>
+                  <path d="m19 9-5 5-4-4-3 3"/>
+                </svg>
+              </div>
+              <div class="metric-info">
+                <span class="metric-label">Numeric Columns</span>
+                <span id="metric-num-val" class="metric-value">0</span>
+              </div>
+            </div>
+
+            <!-- 4. Categorical Columns -->
+            <div class="metric-card metric-cat">
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="8" x2="21" y1="6" y2="6"/>
+                  <line x1="8" x2="21" y1="12" y2="12"/>
+                  <line x1="8" x2="21" y1="18" y2="18"/>
+                  <line x1="3" x2="3.01" y1="6" y2="6"/>
+                  <line x1="3" x2="3.01" y1="12" y2="12"/>
+                  <line x1="3" x2="3.01" y1="18" y2="18"/>
+                </svg>
+              </div>
+              <div class="metric-info">
+                <span class="metric-label">Categorical Columns</span>
+                <span id="metric-cat-val" class="metric-value">0</span>
+              </div>
+            </div>
+
+            <!-- 5. Missing Values -->
+            <div class="metric-card metric-missing">
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                  <line x1="12" x2="12" y1="9" y2="13"/>
+                  <line x1="12" x2="12.01" y1="17" y2="17"/>
+                </svg>
+              </div>
+              <div class="metric-info">
+                <span class="metric-label">Missing Values</span>
+                <span id="metric-missing-val" class="metric-value">0</span>
+              </div>
+            </div>
+
+            <!-- 6. Duplicate Rows -->
+            <div class="metric-card metric-dups">
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                </svg>
+              </div>
+              <div class="metric-info">
+                <span class="metric-label">Duplicate Rows</span>
+                <span id="metric-dups-val" class="metric-value">0</span>
+              </div>
+            </div>
+
+            <!-- 7. Quality Score -->
+            <div class="metric-card metric-score">
+              <div class="metric-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <polygon points="12 8 13.5 11.5 17 12 14.5 14.5 15 18 12 16.5 9 18 9.5 14.5 7 12 10.5 11.5 12 8"/>
+                </svg>
+              </div>
+              <div class="metric-info">
+                <span class="metric-label">Quality Score</span>
+                <span id="metric-score-val" class="metric-value">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle Widgets: Column Types, Data Preview, Quality Overview -->
+          <div class="widgets-grid">
+            
+            <!-- Widget 1: Column Types -->
+            <div class="card">
+              <h3 class="card-title">Column Types</h3>
+              <div class="column-types-body" id="overview-donut-body">
+                <!-- SVG Donut Representation -->
+                <svg class="donut-placeholder-svg" viewBox="0 0 100 100" id="overview-donut-svg">
+                  <circle cx="50" cy="50" r="38" fill="transparent" stroke="#e2e8f0" stroke-width="16" />
+                </svg>
+                <div class="donut-legend">
+                  <div class="legend-item">
+                    <span class="legend-square numeric"></span>
+                    <span id="overview-num-legend-text">Numeric (0)</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-square categorical"></span>
+                    <span id="overview-cat-legend-text">Categorical (0)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Widget 2: Data Preview (First 5 Rows) -->
+            <div class="card">
+              <h3 class="card-title">Data Preview (First 5 Rows)</h3>
+              <div id="overview-preview-wrap">
+                <div class="preview-empty-state">
+                  <div class="empty-icon-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect width="18" height="18" x="3" y="3" rx="2"/>
+                      <path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+                    </svg>
+                  </div>
+                  <div class="empty-title">No dataset uploaded</div>
+                  <div class="empty-subtitle">Upload a CSV to get started</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Widget 3: Quality Overview -->
+            <div class="card">
+              <h3 class="card-title">Quality Overview</h3>
+              <div class="quality-overview-list">
+                <div class="quality-row">
+                  <span class="quality-row-label">Completeness</span>
+                  <span id="overview-completeness-val" class="quality-row-value">-</span>
+                </div>
+                <div class="quality-row">
+                  <span class="quality-row-label">Consistency</span>
+                  <span id="overview-consistency-val" class="quality-row-value">-</span>
+                </div>
+                <div class="quality-row">
+                  <span class="quality-row-label">Validity</span>
+                  <span id="overview-validity-val" class="quality-row-value">-</span>
+                </div>
+                <div class="quality-row">
+                  <span class="quality-row-label">Uniqueness</span>
+                  <span id="overview-uniqueness-val" class="quality-row-value">-</span>
+                </div>
+                <div class="quality-row">
+                  <span class="quality-row-label">Timeliness</span>
+                  <span id="overview-timeliness-val" class="quality-row-value">-</span>
+                </div>
+              </div>
+              <div class="overall-score-box">
+                <span class="overall-score-label">Overall Score</span>
+                <div id="overview-score-circle" class="overall-score-circle">-</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Lower Row: Dataset Information & Recent Activity -->
+          <div class="bottom-grid">
+            <div class="card">
+              <h3 class="card-title">Dataset Information</h3>
+              <div id="overview-dataset-info">
+                <p class="info-table-empty">No dataset loaded</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 class="card-title">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                Recent Activity &amp; Key Insights
+              </h3>
+              <div id="overview-recent-activity">
+                <p class="info-table-empty">No recent activity</p>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ==========================================
+             SECTION 2: DATA PREVIEW
+             ========================================== -->
+        <section id="section-preview" class="page-section">
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+              <h3 class="card-title" style="margin-bottom: 0;">Full Dataset Preview</h3>
+              
+              <!-- Search and Page Size Controls -->
+              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <label for="preview-page-size" style="font-size: 0.78rem; font-weight: 600; color: var(--text-muted);">Rows:</label>
+                  <select id="preview-page-size" class="form-control" style="min-width: 70px; padding: 5px 8px;">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100" selected>100</option>
+                  </select>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <input type="text" id="preview-search-input" class="form-control" placeholder="Search dataset cells..." style="min-width: 180px; padding: 5px 10px;" />
+                  <button type="button" id="preview-search-btn" class="btn-primary" style="padding: 6px 12px; font-size: 0.78rem;">Search</button>
+                  <button type="button" id="preview-search-reset" class="btn-outline" style="padding: 6px 10px; font-size: 0.78rem;">Reset</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="table-container" id="preview-table-container">
+              <table class="data-table">
+                <thead id="preview-thead">
+                  <tr>
+                    <th>Records</th>
+                  </tr>
+                </thead>
+                <tbody id="preview-tbody">
+                  <tr>
+                    <td class="table-empty-row">No dataset available</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination Bar -->
+            <div id="preview-pagination-bar" class="pagination-bar" style="display: none;">
+              <span id="preview-page-info">Showing 0 of 0 rows</span>
+              <div class="pagination-btns">
+                <button type="button" id="preview-btn-prev" class="pagination-btn">&laquo; Previous</button>
+                <span id="preview-page-num" style="font-weight: 600; font-size: 0.82rem; padding: 0 4px;">Page 1 of 1</span>
+                <button type="button" id="preview-btn-next" class="pagination-btn">Next &raquo;</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 3: DATA QUALITY
+             ========================================== -->
+        <section id="section-quality" class="page-section">
+          <div class="metrics-grid">
+            <div class="metric-card metric-rows">
+              <div class="metric-info">
+                <span class="metric-label">Completeness</span>
+                <span id="quality-metric-completeness" class="metric-value">--</span>
+              </div>
+            </div>
+            <div class="metric-card metric-cols">
+              <div class="metric-info">
+                <span class="metric-label">Uniqueness</span>
+                <span id="quality-metric-uniqueness" class="metric-value">--</span>
+              </div>
+            </div>
+            <div class="metric-card metric-missing">
+              <div class="metric-info">
+                <span class="metric-label">Missing Values</span>
+                <span id="quality-metric-missing" class="metric-value">0</span>
+              </div>
+            </div>
+            <div class="metric-card metric-dups">
+              <div class="metric-info">
+                <span class="metric-label">Duplicate Rows</span>
+                <span id="quality-metric-dups" class="metric-value">0</span>
+              </div>
+            </div>
+            <div class="metric-card metric-score">
+              <div class="metric-info">
+                <span class="metric-label">Quality Score</span>
+                <span id="quality-metric-score" class="metric-value">--</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Column-Level Quality Assessment</h3>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Total Values</th>
+                    <th>Missing Count</th>
+                    <th>Missing %</th>
+                    <th>Unique Count</th>
+                    <th>Completeness %</th>
+                    <th>Health Status</th>
+                  </tr>
+                </thead>
+                <tbody id="quality-tbody">
+                  <tr>
+                    <td colspan="8" class="table-empty-row">No dataset available</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Quality Score Formula Card -->
+          <div class="card" id="quality-formula-card" style="display:none; background-color: #f8fafc; border-left: 4px solid var(--color-primary);">
+            <h3 class="card-title" style="font-size: 0.92rem;">Quality Score Formula &amp; Deduction Breakdown</h3>
+            <p style="font-size: 0.82rem; color: var(--text-main); margin-bottom: 8px;">
+              <strong>Deterministic Formula:</strong> <code>Quality Score = 100 - (Missing% &times; 0.60) - (Duplicate% &times; 0.40)</code>
+            </p>
+            <div id="quality-deduction-breakdown" style="font-size: 0.82rem; color: var(--text-muted);"></div>
+          </div>
+
+          <!-- Discrete Quality Issues Inventory Table -->
+          <div class="card" style="margin-top: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+              <h3 class="card-title" style="margin-bottom: 0;">Discrete Data Quality Issues Inventory</h3>
+              <span id="quality-issues-count-badge" class="badge-health-warning" style="display: none;">0 Issues Detected</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px;">
+              Audited inventory of statistical anomalies, missing values, duplicates, and inconsistent casing with exact row indices and remediation recommendations.
+            </p>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Severity</th>
+                    <th>Issue Type</th>
+                    <th>Affected Column</th>
+                    <th>Affected Rows</th>
+                    <th>Impact %</th>
+                    <th>Example Rows</th>
+                    <th>Explanation</th>
+                    <th>Remediation Advice</th>
+                  </tr>
+                </thead>
+                <tbody id="quality-issues-tbody">
+                  <tr>
+                    <td colspan="8" class="table-empty-row">No dataset available</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 4: STATISTICS
+             ========================================== -->
+        <section id="section-statistics" class="page-section">
+          <!-- Numeric Statistics Table -->
+          <div class="card">
+            <h3 class="card-title">Numeric Columns Summary Statistics</h3>
+            <div class="table-container">
+              <table class="data-table">
+                <thead id="stats-numeric-thead">
+                  <tr>
+                    <th>Column Name</th>
+                    <th>Count</th>
+                    <th>Mean</th>
+                    <th>Std Dev</th>
+                    <th>Min</th>
+                    <th>25%</th>
+                    <th>Median (50%)</th>
+                    <th>75%</th>
+                    <th>Max</th>
+                    <th>Variance</th>
+                    <th>Range</th>
+                  </tr>
+                </thead>
+                <tbody id="stats-numeric-tbody">
+                  <tr>
+                    <td colspan="11" class="table-empty-row">No dataset available</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Categorical Columns Table -->
+          <div class="card" id="stats-categorical-card">
+            <h3 class="card-title">Categorical Columns Frequency &amp; Top Values</h3>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Column Name</th>
+                    <th>Total Values</th>
+                    <th>Unique Count</th>
+                    <th>Most Frequent Value</th>
+                    <th>Top Occurrence Count</th>
+                    <th>Top 5 Values Breakdown</th>
+                  </tr>
+                </thead>
+                <tbody id="stats-categorical-tbody">
+                  <tr>
+                    <td colspan="6" class="table-empty-row">No dataset available</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Date Columns Table -->
+          <div class="card" id="stats-date-card" style="margin-top: 20px; display: none;">
+            <h3 class="card-title">Date Columns Span &amp; Validity</h3>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Column Name</th>
+                    <th>Earliest Date</th>
+                    <th>Latest Date</th>
+                    <th>Date Span (Days)</th>
+                    <th>Invalid Date Entries</th>
+                  </tr>
+                </thead>
+                <tbody id="stats-date-tbody">
+                  <tr><td colspan="5" class="table-empty-row">No date columns detected</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Pearson Correlation Heatmap Table -->
+          <div class="card" id="stats-correlation-card" style="margin-top: 20px; display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+              <h3 class="card-title" style="margin-bottom: 0;">Pearson Correlation Matrix (r &isin; [-1.0, 1.0])</h3>
+              <span style="font-size: 0.76rem; color: var(--text-muted);">Pairwise linear correlation between all numeric columns</span>
+            </div>
+            <div class="table-container" id="correlation-matrix-container">
+              <!-- Dynamically populated correlation matrix -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 5: DATA EXPLORER
+             ========================================== -->
+        <section id="section-explorer" class="page-section">
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+              <h3 class="card-title" style="margin-bottom: 0;">Query &amp; Filter Builder</h3>
+              <button type="button" id="btn-export-filtered-csv" class="btn-outline" style="height: 36px; font-size: 0.8rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Export Filtered CSV
+              </button>
+            </div>
+            
+            <form class="filter-bar" id="explorer-filter-form">
+              <div class="filter-item">
+                <label for="filter-column" class="filter-label">Column</label>
+                <select id="filter-column" class="form-control">
+                  <option value="">Select Column</option>
+                </select>
+              </div>
+
+              <div class="filter-item">
+                <label for="filter-operator" class="filter-label">Operator</label>
+                <select id="filter-operator" class="form-control">
+                  <option value="equals">Equals (=)</option>
+                  <option value="not_equals">Not Equals (!=)</option>
+                  <option value="contains">Contains Substring</option>
+                  <option value="starts_with">Starts With</option>
+                  <option value="gt">Greater Than (&gt;)</option>
+                  <option value="gte">Greater Than or Equal (&gt;=)</option>
+                  <option value="lt">Less Than (&lt;)</option>
+                  <option value="lte">Less Than or Equal (&lt;=)</option>
+                  <option value="is_empty">Is Empty / Null</option>
+                  <option value="is_not_empty">Is Not Empty</option>
+                </select>
+              </div>
+
+              <div class="filter-item">
+                <label for="filter-value" class="filter-label">Filter Value</label>
+                <input type="text" id="filter-value" class="form-control" placeholder="Enter filter value..." />
+              </div>
+
+              <button type="button" id="btn-apply-filter" class="btn-primary">Apply Filter</button>
+              <button type="button" id="btn-clear-filter" class="btn-outline">Clear Filter</button>
+            </form>
+
+            <!-- Search and Sort controls -->
+            <div style="display: flex; gap: 12px; align-items: flex-end; margin-top: 14px; margin-bottom: 14px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 220px;">
+                <label for="explorer-search-input" class="filter-label">Global Search Across All Fields</label>
+                <input type="text" id="explorer-search-input" class="form-control" placeholder="Search any keyword or number..." />
+              </div>
+              <div style="min-width: 160px;">
+                <label for="explorer-sort-column" class="filter-label">Sort Column</label>
+                <select id="explorer-sort-column" class="form-control">
+                  <option value="">Default Order</option>
+                </select>
+              </div>
+              <div style="min-width: 140px;">
+                <label for="explorer-sort-order" class="filter-label">Sort Direction</label>
+                <select id="explorer-sort-order" class="form-control">
+                  <option value="asc">Ascending &uarr;</option>
+                  <option value="desc">Descending &darr;</option>
+                </select>
+              </div>
+              <div style="min-width: 110px;">
+                <label for="explorer-page-size" class="filter-label">Rows per page</label>
+                <select id="explorer-page-size" class="form-control">
+                  <option value="25">25 rows</option>
+                  <option value="50">50 rows</option>
+                  <option value="100">100 rows</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="filter-status-badge" class="info-alert-bar" style="display:none; margin-bottom: 16px;"></div>
+
+            <div class="table-container">
+              <table class="data-table">
+                <thead id="explorer-thead">
+                  <tr>
+                    <th>Filtered Records</th>
+                  </tr>
+                </thead>
+                <tbody id="explorer-tbody">
+                  <tr>
+                    <td class="table-empty-row">Upload a CSV to explore your data</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Explorer Pagination Bar -->
+            <div class="pagination-bar" id="explorer-pagination-bar" style="display: none;">
+              <span id="explorer-page-info">Showing rows 1-25 of 100</span>
+              <div class="pagination-btns">
+                <button type="button" class="pagination-btn" id="btn-explorer-prev" disabled>&larr; Previous</button>
+                <button type="button" class="pagination-btn" id="btn-explorer-next">Next &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 6: CLEANING STUDIO
+             ========================================== -->
+        <section id="section-cleaning" class="page-section">
+          <!-- Active Dataset Status Banner -->
+          <div class="card" style="margin-bottom: 20px; background: #f8fafc; border-left: 4px solid var(--color-primary);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+              <div>
+                <h3 style="font-size:1.05rem; font-weight:700; color:var(--text-main); margin:0 0 4px 0;">Interactive Data Cleaning Studio</h3>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin:0;">Stage multi-step deterministic transformations, preview changes in real time, and save cleaned versions.</p>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <span id="cleaning-dataset-name" style="font-size:0.84rem; font-weight:600; color:#1e293b; background:#e2e8f0; padding:4px 10px; border-radius:4px;">No active dataset</span>
+                <span id="cleaning-dataset-stats" style="font-size:0.8rem; color:#64748b;">-</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Operations Cards Grid -->
+          <div class="operations-grid">
+            <!-- 1. Missing Values -->
+            <div class="operation-box">
+              <div class="operation-box-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                Missing Values Handling
+              </div>
+              <label class="filter-label">Strategy</label>
+              <select id="clean-missing-strategy" class="form-control">
+                <option value="drop_rows">Drop Rows with Missing Values</option>
+                <option value="impute_mean">Impute Numeric with Column Mean</option>
+                <option value="impute_median">Impute Numeric with Column Median</option>
+                <option value="impute_mode">Impute Categorical with Most Frequent Value</option>
+                <option value="impute_constant">Fill with Custom String / 0</option>
+              </select>
+              <label class="filter-label">Target Column</label>
+              <select id="clean-missing-column" class="form-control clean-column-select">
+                <option value="ALL">All Columns</option>
+              </select>
+              <div id="clean-missing-custom-wrap" style="display:none;">
+                <label class="filter-label">Custom Fill Value</label>
+                <input type="text" id="clean-missing-custom-val" class="form-control" placeholder="e.g. Unknown or 0">
+              </div>
+              <button type="button" id="btn-stage-missing" class="btn-primary" style="margin-top:auto;">+ Stage Operation</button>
+            </div>
+
+            <!-- 2. Deduplication -->
+            <div class="operation-box">
+              <div class="operation-box-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                Duplicate Records
+              </div>
+              <label class="filter-label">Deduplication Method</label>
+              <select id="clean-dup-strategy" class="form-control">
+                <option value="remove_exact">Remove Exact Duplicate Rows</option>
+                <option value="remove_by_column">Deduplicate by Unique Key Column</option>
+              </select>
+              <label class="filter-label">Key Column</label>
+              <select id="clean-dup-column" class="form-control clean-column-select">
+                <option value="ALL">All Columns Combined</option>
+              </select>
+              <p style="font-size:0.75rem; color:#64748b; margin:6px 0 0 0;">Retains the first occurrence of each unique record.</p>
+              <button type="button" id="btn-stage-duplicates" class="btn-primary" style="margin-top:auto;">+ Stage Operation</button>
+            </div>
+
+            <!-- 3. Outlier Remediation -->
+            <div class="operation-box">
+              <div class="operation-box-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 12-7-7-7 7"/><path d="M12 19V5"/></svg>
+                Outlier Remediation (IQR)
+              </div>
+              <label class="filter-label">Method</label>
+              <select id="clean-outlier-strategy" class="form-control">
+                <option value="cap_iqr">Cap / Clip to Tukey IQR Fences (1.5x IQR)</option>
+                <option value="remove_rows">Remove Rows with Outliers</option>
+              </select>
+              <label class="filter-label">Numeric Column</label>
+              <select id="clean-outlier-column" class="form-control clean-numeric-select">
+                <option value="">Select Numeric Column</option>
+              </select>
+              <p style="font-size:0.75rem; color:#64748b; margin:6px 0 0 0;">Fences: Q1 - 1.5*IQR to Q3 + 1.5*IQR.</p>
+              <button type="button" id="btn-stage-outliers" class="btn-primary" style="margin-top:auto;">+ Stage Operation</button>
+            </div>
+
+            <!-- 4. Text Sanitization -->
+            <div class="operation-box">
+              <div class="operation-box-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" x2="15" y1="20" y2="20"/><line x1="12" x2="12" y1="4" y2="20"/></svg>
+                Text Sanitization
+              </div>
+              <label class="filter-label">Transformation</label>
+              <select id="clean-text-strategy" class="form-control">
+                <option value="trim">Trim Whitespace</option>
+                <option value="lowercase">Convert to lowercase</option>
+                <option value="uppercase">Convert to UPPERCASE</option>
+                <option value="titlecase">Convert to Title Case</option>
+                <option value="remove_special">Remove Special Characters</option>
+              </select>
+              <label class="filter-label">Target Column</label>
+              <select id="clean-text-column" class="form-control clean-column-select">
+                <option value="ALL">All Text Columns</option>
+              </select>
+              <button type="button" id="btn-stage-text" class="btn-primary" style="margin-top:auto;">+ Stage Operation</button>
+            </div>
+
+            <!-- 5. Column Management -->
+            <div class="operation-box">
+              <div class="operation-box-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                Column Management
+              </div>
+              <label class="filter-label">Action</label>
+              <select id="clean-col-action" class="form-control">
+                <option value="drop">Drop Column</option>
+                <option value="rename">Rename Column</option>
+              </select>
+              <label class="filter-label">Target Column</label>
+              <select id="clean-col-target" class="form-control clean-column-select">
+                <option value="">Select Column</option>
+              </select>
+              <div id="clean-rename-wrap" style="display:none;">
+                <label class="filter-label">New Column Name</label>
+                <input type="text" id="clean-new-col-name" class="form-control" placeholder="e.g. Total_Amount">
+              </div>
+              <button type="button" id="btn-stage-column" class="btn-primary" style="margin-top:auto;">+ Stage Operation</button>
+            </div>
+          </div>
+
+          <!-- ==========================================
+               SECTION B: STAGED TRANSFORMATION PIPELINE
+               ========================================== -->
+          <div class="card" style="margin-bottom: 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+              <h3 class="card-title" style="margin-bottom:0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                Staged Transformation Pipeline (<span id="staged-count">0</span> operations)
+              </h3>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button type="button" id="btn-clear-pipeline" class="btn-outline" style="font-size:0.8rem; padding:6px 14px;">Clear Pipeline</button>
+                <button type="button" id="btn-preview-pipeline" class="btn-outline" style="font-size:0.8rem; padding:6px 14px; background:#eff6ff; color:#2563eb; border-color:#93c5fd; font-weight:600;">Preview Impact</button>
+              </div>
+            </div>
+
+            <div id="pipeline-list-container" class="pipeline-list">
+              <div style="font-size:0.82rem; color:#94a3b8; padding:12px; text-align:center; background:#f8fafc; border-radius:6px; border:1px dashed #cbd5e1;">
+                No transformations staged yet. Select operations above and click "+ Stage Operation".
+              </div>
+            </div>
+
+            <div id="cleaning-feedback-bar" style="display:none; padding:10px 14px; border-radius:6px; font-size:0.84rem; font-weight:600; margin-top:12px;"></div>
+          </div>
+
+          <!-- ==========================================
+               SECTIONS C, D, E: REAL-TIME IMPACT & PREVIEW
+               ========================================== -->
+          <div class="card" id="cleaning-preview-card" style="display:none;">
+            <!-- Section C: Impact Summary Header -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+              <div>
+                <h3 class="card-title" style="margin-bottom:2px;">Data Cleaning Impact Summary</h3>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">Deterministic calculations of data transformations across all rows, columns, and quality dimensions.</p>
+              </div>
+              <button type="button" id="btn-download-cleaned-csv" class="btn-outline" style="font-size:0.8rem; padding:6px 14px; background:#eff6ff; color:#2563eb; border-color:#93c5fd; font-weight:600;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Download Cleaned CSV
+              </button>
+            </div>
+
+            <!-- Zero Affected Cells / No-Changes Alert Banner -->
+            <div id="cleaning-no-changes-banner" style="display:none; padding:12px 16px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:6px; color:#1e40af; font-size:0.85rem; font-weight:600; margin-bottom:14px;"></div>
+
+            <!-- 12 KPI Metric Cards Grid -->
+            <div class="diff-stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); margin-bottom:14px;">
+              <div class="diff-stat-card">
+                <div id="kpi-orig-rows" class="diff-stat-val">0</div>
+                <div class="diff-stat-lbl">Original Rows</div>
+              </div>
+              <div class="diff-stat-card">
+                <div id="kpi-remaining-rows" class="diff-stat-val">0</div>
+                <div class="diff-stat-lbl">Remaining Rows</div>
+              </div>
+              <div class="diff-stat-card">
+                <div id="kpi-rows-removed" class="diff-stat-val" style="color:#dc2626;">0</div>
+                <div class="diff-stat-lbl">Rows Removed</div>
+              </div>
+              <div class="diff-stat-card">
+                <div id="kpi-orig-cols" class="diff-stat-val">0</div>
+                <div class="diff-stat-lbl">Original Columns</div>
+              </div>
+              <div class="diff-stat-card">
+                <div id="kpi-remaining-cols" class="diff-stat-val">0</div>
+                <div class="diff-stat-lbl">Remaining Columns</div>
+              </div>
+              <div class="diff-stat-card">
+                <div id="kpi-cols-removed" class="diff-stat-val" style="color:#ea580c;">0</div>
+                <div class="diff-stat-lbl">Columns Removed</div>
+              </div>
+              <div class="diff-stat-card">
+                <div id="kpi-cells-modified" class="diff-stat-val" style="color:#7c3aed;">0</div>
+                <div class="diff-stat-lbl">Cells Modified</div>
+              </div>
+              <div class="diff-stat-card">
+                <div id="kpi-missing-before" class="diff-stat-val">0</div>
+                <div class="diff-stat-lbl">Missing (Before)</div>
+              </div>
+              <div class="diff-stat-card">
+                <div id="kpi-missing-after" class="diff-stat-val" style="color:#16a34a;">0</div>
+                <div class="diff-stat-lbl">Missing (After)</div>
+              </div>
+              <div class="diff-stat-card">
+                <div id="kpi-dups-before" class="diff-stat-val">0</div>
+                <div class="diff-stat-lbl">Duplicates (Before)</div>
+              </div>
+              <div class="diff-stat-card">
+                <div id="kpi-dups-after" class="diff-stat-val" style="color:#16a34a;">0</div>
+                <div class="diff-stat-lbl">Duplicates (After)</div>
+              </div>
+              <div class="diff-stat-card">
+                <div id="kpi-score-change" class="diff-stat-val" style="color:#0284c7; font-size:1.15rem;">--</div>
+                <div class="diff-stat-lbl">Quality: Before &rarr; After</div>
+              </div>
+            </div>
+
+            <!-- Breakdown per Operation -->
+            <div id="cleaning-ops-breakdown" style="display:none; margin-bottom:16px; padding:10px 14px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; font-size:0.8rem; color:#475569;"></div>
+
+            <!-- Section D: Before-and-After Comparison Controls -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px; padding-top:10px; border-top:1px solid #e2e8f0;">
+              <div style="display:flex; gap:6px;" id="cleaning-view-toggle-group">
+                <button type="button" class="before-after-toggle-btn active" id="btn-view-after">Transformed Output (After)</button>
+                <button type="button" class="before-after-toggle-btn" id="btn-view-before">Original Input (Before)</button>
+                <button type="button" class="before-after-toggle-btn" id="btn-view-diff">Side-by-Side Diff</button>
+              </div>
+              <div style="font-size:0.78rem; display:flex; align-items:center; gap:16px;">
+                <span style="display:inline-flex; align-items:center; gap:6px;">
+                  <span style="display:inline-block; width:14px; height:14px; background:#fef9c3; border:1px solid #fde047; border-radius:3px;"></span>
+                  <span>Modified Cell (Hover to view original value)</span>
+                </span>
+                <span id="cleaning-current-view-label" style="font-weight:600; color:#475569;">Viewing: Transformed Output</span>
+              </div>
+            </div>
+
+            <!-- Section E: Transformed Dataset Preview Table -->
+            <div class="table-container table-scroll-container">
+              <table class="data-table" id="cleaning-preview-table">
+                <thead id="cleaning-preview-thead"></thead>
+                <tbody id="cleaning-preview-tbody"></tbody>
+              </table>
+            </div>
+
+            <!-- Preview Pagination Bar -->
+            <div id="cleaning-pagination-bar" class="pagination-bar" style="margin-top:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <label for="cleaning-page-size" style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">Rows per page:</label>
+                <select id="cleaning-page-size" class="form-control" style="width:auto; padding:4px 8px; font-size:0.78rem;">
+                  <option value="10" selected>10 rows</option>
+                  <option value="25">25 rows</option>
+                  <option value="50">50 rows</option>
+                  <option value="all">All rows</option>
+                </select>
+                <span id="cleaning-page-info" style="font-size:0.8rem; color:var(--text-muted); margin-left:6px;">Showing 0 of 0 rows</span>
+              </div>
+              <div class="pagination-btns">
+                <button type="button" id="cleaning-btn-prev" class="pagination-btn">&laquo; Previous</button>
+                <span id="cleaning-page-num" style="font-weight:600; font-size:0.82rem; padding:0 6px;">Page 1 of 1</span>
+                <button type="button" id="cleaning-btn-next" class="pagination-btn">Next &raquo;</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==========================================
+               SECTION F: APPLY & SAVE VERSION CARD
+               ========================================== -->
+          <div class="card" id="cleaning-save-card" style="margin-top:20px; border-left:4px solid #16a34a;">
+            <h3 class="card-title" style="margin-bottom:6px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Apply &amp; Save Cleaned Dataset Version
+            </h3>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:14px;">
+              Persists the staged transformations as a new active dataset version in DataLens. The original dataset remains intact for comparison and rollback.
+            </p>
+            <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+              <div style="flex:1; max-width:340px;">
+                <label for="clean-version-name-input" class="filter-label">Version Name (Optional)</label>
+                <input type="text" id="clean-version-name-input" class="form-control" placeholder="e.g. v2_Cleaned_Dataset" />
+              </div>
+              <div style="margin-top:auto;">
+                <button type="button" id="btn-apply-pipeline" class="btn-primary" style="padding:9px 22px; font-weight:700;">Apply &amp; Save Version</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 7: VISUALIZATION
+             ========================================== -->
+        <section id="section-visualization" class="page-section">
+          <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+              <h3 class="card-title" style="margin-bottom:0;">Deterministic Chart &amp; Distribution Visualizer</h3>
+              <button type="button" id="btn-export-chart-png" class="btn-outline" style="font-size:0.78rem; padding:6px 14px; display:none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Download Chart (PNG)
+              </button>
+            </div>
+            
+            <div class="filter-bar">
+              <div class="filter-item">
+                <label for="chart-type-select" class="filter-label">Chart Type</label>
+                <select id="chart-type-select" class="form-control">
+                  <option value="bar">Bar Chart</option>
+                  <option value="line">Line Chart</option>
+                  <option value="pie">Pie Chart</option>
+                  <option value="doughnut">Doughnut Chart</option>
+                  <option value="histogram">Histogram (Frequency Bins)</option>
+                  <option value="scatter">Scatter Plot (2 Numeric Variables)</option>
+                  <option value="boxplot">Box Plot (5-Number Summary)</option>
+                  <option value="correlation_heatmap">Correlation Heatmap</option>
+                </select>
+              </div>
+
+              <div class="filter-item" id="chart-x-axis-wrap">
+                <label for="chart-x-axis" class="filter-label">X-Axis Column</label>
+                <select id="chart-x-axis" class="form-control">
+                  <option value="">Select Column</option>
+                </select>
+              </div>
+
+              <div class="filter-item" id="chart-y-axis-wrap">
+                <label for="chart-y-axis" class="filter-label">Y-Axis Column (Optional)</label>
+                <select id="chart-y-axis" class="form-control">
+                  <option value="">(Count Records)</option>
+                </select>
+              </div>
+
+              <div class="filter-item" id="chart-agg-wrap">
+                <label for="chart-aggregation" class="filter-label">Aggregation</label>
+                <select id="chart-aggregation" class="form-control">
+                  <option value="count">Count Records</option>
+                  <option value="sum">Sum</option>
+                  <option value="avg">Average</option>
+                  <option value="min">Minimum</option>
+                  <option value="max">Maximum</option>
+                </select>
+              </div>
+
+              <div class="filter-item" id="chart-bins-wrap" style="display:none;">
+                <label for="chart-bins" class="filter-label">Histogram Bins</label>
+                <select id="chart-bins" class="form-control">
+                  <option value="5">5 Bins</option>
+                  <option value="8" selected>8 Bins</option>
+                  <option value="12">12 Bins</option>
+                  <option value="16">16 Bins</option>
+                </select>
+              </div>
+
+              <button type="button" id="btn-generate-chart" class="btn-primary">Generate Chart</button>
+            </div>
+
+            <!-- Chart Canvas Container -->
+            <div id="chart-canvas-wrapper" style="display: none; padding: 20px 10px; min-height: 420px; position:relative;">
+              <canvas id="chart-canvas" style="max-height: 420px; width: 100%;"></canvas>
+            </div>
+
+            <!-- Correlation Heatmap Container (when Heatmap selected) -->
+            <div id="chart-heatmap-wrapper" style="display:none; padding: 20px 0; overflow-x:auto;">
+              <table id="heatmap-table" class="heatmap-table"></table>
+            </div>
+
+            <!-- Empty Placeholder -->
+            <div id="chart-placeholder-container" class="chart-box-container">
+              <div class="empty-icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" x2="18" y1="20" y2="10"/>
+                  <line x1="12" x2="12" y1="20" y2="4"/>
+                  <line x1="6" x2="6" y1="20" y2="14"/>
+                </svg>
+              </div>
+              <div class="empty-title">No visualization generated</div>
+              <div class="empty-subtitle">Select chart options above and click "Generate Chart" to render data visualizer.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 8: VALIDATION RULES STUDIO
+             ========================================== -->
+        <section id="section-validation" class="page-section">
+          <!-- Add Custom Rule Card -->
+          <div class="card" style="margin-bottom: 20px;">
+            <h3 class="card-title">Add Custom Data Validation Rule</h3>
+            <div class="filter-bar" style="margin-bottom:0;">
+              <div class="filter-item">
+                <label for="rule-name-input" class="filter-label">Rule Name</label>
+                <input type="text" id="rule-name-input" class="form-control" placeholder="e.g. Valid Price Range" />
+              </div>
+
+              <div class="filter-item">
+                <label for="rule-column-select" class="filter-label">Target Column</label>
+                <select id="rule-column-select" class="form-control clean-column-select">
+                  <option value="">Select Column</option>
+                </select>
+              </div>
+
+              <div class="filter-item">
+                <label for="rule-type-select" class="filter-label">Rule Type</label>
+                <select id="rule-type-select" class="form-control">
+                  <option value="NO_MISSING">Disallow Missing Values</option>
+                  <option value="POSITIVE_ONLY">Positive Numbers Only (&gt; 0)</option>
+                  <option value="NUMERIC_RANGE">Numeric Range (Min / Max)</option>
+                  <option value="ALLOWED_VALUES">Allowed Values / Enum</option>
+                  <option value="UNIQUE">Unique Values (No Duplicates)</option>
+                </select>
+              </div>
+
+              <div class="filter-item" id="rule-range-wrap" style="display:none;">
+                <label class="filter-label">Min &amp; Max Range</label>
+                <div style="display:flex; gap:6px;">
+                  <input type="number" id="rule-min-val" class="form-control" placeholder="Min" style="width:75px;" />
+                  <input type="number" id="rule-max-val" class="form-control" placeholder="Max" style="width:75px;" />
+                </div>
+              </div>
+
+              <div class="filter-item" id="rule-allowed-wrap" style="display:none;">
+                <label for="rule-allowed-val" class="filter-label">Allowed Values (Comma-Separated)</label>
+                <input type="text" id="rule-allowed-val" class="form-control" placeholder="e.g. Pending, Completed, Shipped" />
+              </div>
+
+              <button type="button" id="btn-add-rule" class="btn-primary">+ Add Validation Rule</button>
+            </div>
+          </div>
+
+          <!-- Evaluated Rules Audit Table Card -->
+          <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+              <h3 class="card-title" style="margin-bottom:0;">Active Validation Rules &amp; Real-Time Audit</h3>
+              <button type="button" id="btn-export-validation-csv" class="btn-outline" style="font-size:0.78rem; padding:6px 14px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px; margin-right:4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Export Validation Results (CSV)
+              </button>
+            </div>
+
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Rule Name</th>
+                    <th>Column</th>
+                    <th>Rule Type</th>
+                    <th>Status</th>
+                    <th>Total Evaluated Rows</th>
+                    <th>Violations Count</th>
+                    <th>Failure Rate</th>
+                    <th>Example Violations</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="validation-rules-tbody">
+                  <tr>
+                    <td colspan="9" class="table-empty-row">No validation rules created yet. Add a rule above to audit your dataset.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 9: VERSION COMPARISON STUDIO
+             ========================================== -->
+        <section id="section-comparison" class="page-section">
+          <!-- Version Selector Card -->
+          <div class="card" style="margin-bottom: 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+              <div>
+                <h3 class="card-title" style="margin-bottom:4px;">Side-by-Side Dataset Version Comparison</h3>
+                <p style="font-size:0.84rem; color:var(--text-muted); margin:0;">Compare statistical shifts, schema evolutions, and data health deltas between dataset versions or across distinct datasets.</p>
+              </div>
+              <div id="cmp-lineage-badge-wrap">
+                <span id="cmp-lineage-badge" style="display:none; font-size:0.75rem; font-weight:700; padding:4px 10px; border-radius:12px; text-transform:uppercase; letter-spacing:0.5px;">Lineage Version</span>
+              </div>
+            </div>
+            
+            <div class="filter-bar" style="margin-bottom:0; display:flex; gap:14px; align-items:flex-end; flex-wrap:wrap;">
+              <div class="filter-item" style="flex:1; min-width:240px;">
+                <label for="compare-base-select" class="filter-label" style="font-weight:600; color:var(--text-main); margin-bottom:6px; display:block;">Base Version (Before)</label>
+                <select id="compare-base-select" class="form-control" style="width:100%;">
+                  <option value="">Select Base Version</option>
+                </select>
+              </div>
+
+              <div class="filter-item" style="flex:1; min-width:240px;">
+                <label for="compare-target-select" class="filter-label" style="font-weight:600; color:var(--text-main); margin-bottom:6px; display:block;">Target Version (After)</label>
+                <select id="compare-target-select" class="form-control" style="width:100%;">
+                  <option value="">Select Target Version</option>
+                </select>
+              </div>
+
+              <button type="button" id="btn-run-comparison" class="btn-primary" style="height:40px; padding:0 22px; font-weight:600;">Compare Versions</button>
+            </div>
+          </div>
+
+          <!-- Comparison Nature Banner -->
+          <div id="cmp-nature-banner" style="display:none; padding:14px 18px; border-radius:8px; margin-bottom:20px; font-size:0.86rem; line-height:1.5;"></div>
+
+          <!-- Comparison Results Container -->
+          <div id="comparison-results-wrap" style="display:none;">
+
+            <!-- Executive Summary & Verdict Card -->
+            <div id="cmp-summary-card" class="card" style="margin-bottom:20px; border-left: 4px solid #0284c7;">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+                <div>
+                  <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+                    <h4 style="font-size:1.05rem; font-weight:700; color:var(--text-main); margin:0;">Comparison Executive Summary</h4>
+                    <span id="cmp-overall-verdict-badge" style="font-size:0.75rem; font-weight:700; padding:3px 10px; border-radius:12px;">VERDICT</span>
+                  </div>
+                  <p id="cmp-summary-text" style="font-size:0.86rem; color:#475569; margin:0; line-height:1.5;"></p>
+                </div>
+                <div id="cmp-pair-badge" style="font-size:0.8rem; background:#f1f5f9; color:#475569; padding:4px 10px; border-radius:6px; font-family:monospace;"></div>
+              </div>
+
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; margin-top:14px; padding-top:14px; border-top:1px solid #e2e8f0;">
+                <div id="cmp-improvements-box" style="display:none;">
+                  <div style="font-size:0.8rem; font-weight:700; color:#15803d; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Validated Improvements
+                  </div>
+                  <ul id="cmp-improvements-list" style="margin:0; padding-left:18px; font-size:0.82rem; color:#334155; line-height:1.5;"></ul>
+                </div>
+
+                <div id="cmp-deteriorations-box" style="display:none;">
+                  <div style="font-size:0.8rem; font-weight:700; color:#b91c1c; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    Quality Regressions / Cautions
+                  </div>
+                  <ul id="cmp-deteriorations-list" style="margin:0; padding-left:18px; font-size:0.82rem; color:#334155; line-height:1.5;"></ul>
+                </div>
+
+                <div id="cmp-observations-box" style="display:none;">
+                  <div style="font-size:0.8rem; font-weight:700; color:#0369a1; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    Structural & Volume Evolution
+                  </div>
+                  <ul id="cmp-observations-list" style="margin:0; padding-left:18px; font-size:0.82rem; color:#334155; line-height:1.5;"></ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7-Metric Quality & Volume Comparison Table Card -->
+            <div class="card" style="margin-bottom:20px;">
+              <h4 style="font-size:0.95rem; font-weight:700; margin-bottom:4px; color:var(--text-main);">7-Metric Quality & Volume Comparison Matrix</h4>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin:0 0 14px 0;">Directional health indicators reflect whether deltas represent improvements (green), regressions (red), or volume adjustments.</p>
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th style="min-width:160px;">Quality & Volume Dimension</th>
+                      <th style="text-align:right;">Base Version</th>
+                      <th style="text-align:right;">Target Version</th>
+                      <th style="text-align:right;">Absolute Delta (Δ)</th>
+                      <th style="text-align:center;">Health Impact</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cmp-metrics-tbody">
+                    <!-- Populated via JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Record-Level Turnover Analysis Card -->
+            <div class="card" style="margin-bottom:20px;">
+              <h4 style="font-size:0.95rem; font-weight:700; margin-bottom:4px; color:var(--text-main);">Record-Level Turnover & Lineage Tracing</h4>
+              <p id="cmp-turnover-narrative" style="font-size:0.84rem; color:#475569; margin:0 0 14px 0; line-height:1.5;"></p>
+              
+              <div class="diff-stats-grid">
+                <div class="diff-stat-card">
+                  <div id="cmp-kpi-net-delta" class="diff-stat-val">0</div>
+                  <div class="diff-stat-lbl">Net Row Change</div>
+                </div>
+                <div class="diff-stat-card">
+                  <div id="cmp-kpi-retained" class="diff-stat-val" style="color:#0284c7;">0</div>
+                  <div class="diff-stat-lbl">Rows Retained</div>
+                </div>
+                <div class="diff-stat-card">
+                  <div id="cmp-kpi-removed" class="diff-stat-val" style="color:#b91c1c;">0</div>
+                  <div class="diff-stat-lbl">Rows Removed</div>
+                </div>
+                <div class="diff-stat-card">
+                  <div id="cmp-kpi-added" class="diff-stat-val" style="color:#15803d;">0</div>
+                  <div class="diff-stat-lbl">Rows Added</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Charts Grid (Quality Dimensions & Mean Shifts) -->
+            <div class="widgets-grid" style="margin-bottom:20px;">
+              <div class="card">
+                <h4 style="font-size:0.92rem; font-weight:700; margin-bottom:12px; color:var(--text-main);">Quality Dimensions Comparison (Before vs After)</h4>
+                <div style="height:240px; position:relative;">
+                  <canvas id="cmp-quality-chart"></canvas>
+                </div>
+              </div>
+
+              <div class="card">
+                <h4 style="font-size:0.92rem; font-weight:700; margin-bottom:12px; color:var(--text-main);">Numeric Column Mean Shifts</h4>
+                <div id="cmp-shifts-chart-wrap" style="height:240px; position:relative;">
+                  <canvas id="cmp-shifts-chart"></canvas>
+                </div>
+                <div id="cmp-shifts-chart-fallback" style="display:none; height:240px; display:flex; align-items:center; justify-content:center; text-align:center; color:#64748b; font-size:0.85rem; padding:20px;">
+                  No shared numeric columns available for mean shift visualization.
+                </div>
+              </div>
+            </div>
+
+            <!-- Numeric Column Statistical Drift Table -->
+            <div class="card" style="margin-bottom:20px;">
+              <h4 style="font-size:0.92rem; font-weight:700; margin-bottom:4px; color:var(--text-main);">Numeric Column Statistical Drift Analysis</h4>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin:0 0 14px 0;">Tracks mean shifts, drift percentages, and median dynamics across all continuous attributes.</p>
+              
+              <div id="cmp-shifts-message" style="display:none; padding:10px 14px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; font-size:0.82rem; color:#475569; margin-bottom:12px;"></div>
+
+              <div class="table-container" style="max-height:300px;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Column</th>
+                      <th style="text-align:right;">Base Mean</th>
+                      <th style="text-align:right;">Target Mean</th>
+                      <th style="text-align:right;">Shift (Δ)</th>
+                      <th style="text-align:right;">% Change</th>
+                      <th style="text-align:right;">Base Median</th>
+                      <th style="text-align:right;">Target Median</th>
+                      <th>Status & Explanation</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cmp-shifts-tbody">
+                    <tr><td colspan="8" class="table-empty-row">No numeric column shifts detected.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Schema Evolution Table Card -->
+            <div class="card" style="margin-bottom:20px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+                <div>
+                  <h4 style="font-size:0.92rem; font-weight:700; margin-bottom:2px; color:var(--text-main);">Schema Evolution & Column Mapping</h4>
+                  <p style="font-size:0.82rem; color:var(--text-muted); margin:0;">Tracks added, removed, retained, and type-converted columns across versions.</p>
+                </div>
+                <div style="display:flex; gap:8px; font-size:0.75rem;">
+                  <span id="cmp-schema-retained-count" style="background:#f1f5f9; color:#475569; padding:3px 8px; border-radius:4px; font-weight:600;">0 Retained</span>
+                  <span id="cmp-schema-added-count" style="background:#dcfce7; color:#15803d; padding:3px 8px; border-radius:4px; font-weight:600;">0 Added</span>
+                  <span id="cmp-schema-removed-count" style="background:#fee2e2; color:#b91c1c; padding:3px 8px; border-radius:4px; font-weight:600;">0 Removed</span>
+                </div>
+              </div>
+
+              <div class="table-container" style="max-height:300px;">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Column Name</th>
+                      <th>Base Type</th>
+                      <th>Target Type</th>
+                      <th style="text-align:center;">Evolution Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cmp-schema-tbody">
+                    <!-- Populated via JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+          <div id="comparison-empty-state" class="card" style="text-align:center; padding:40px;">
+            <div class="empty-icon-circle" style="margin:0 auto 12px auto;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+            </div>
+            <div class="empty-title">Select two dataset versions to compare</div>
+            <div class="empty-subtitle">Choose a base dataset and a target version (such as a cleaned version) to inspect detailed deltas.</div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 7: INSIGHTS
+             ========================================== -->
+        <section id="section-insights" class="page-section">
+          <div class="card">
+            <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+              <h3 class="card-title" style="margin-bottom: 0;">Automated Rule-Based Dataset Insights</h3>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span id="insights-health-rating" class="badge-health-good" style="display:none;">Excellent Health</span>
+                <button type="button" id="btn-copy-insights" class="btn-outline" style="padding: 6px 14px; font-size: 0.78rem; display: none;">Copy Observations</button>
+                <span id="copy-feedback-msg" style="font-size: 0.78rem; color: #16a34a; font-weight: 600; display: none;">Copied!</span>
+              </div>
+            </div>
+
+            <div id="insights-list-container">
+              <div class="preview-empty-state" style="min-height: 260px;">
+                <div class="empty-icon-circle">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/>
+                    <path d="M9 18h6"/>
+                    <path d="M10 22h4"/>
+                  </svg>
+                </div>
+                <div class="empty-title">No dataset available</div>
+                <div class="empty-subtitle">Statistical insights and distribution patterns will be generated once a dataset is loaded.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 11: REPORTS & EXPORTS STUDIO
+             ========================================== -->
+        <section id="section-reports" class="page-section">
+          <!-- Active Dataset Status Banner -->
+          <div class="card" style="margin-bottom: 20px; background: #f8fafc; border-left: 4px solid var(--color-primary);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+              <div>
+                <h3 style="font-size:1.05rem; font-weight:700; color:var(--text-main); margin:0 0 4px 0;">Executive Reports &amp; Comprehensive Export Center</h3>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin:0;">Download formal profiling artifacts, machine-readable audits, data dictionaries, and reproducible audit trails.</p>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <span id="reports-dataset-name" style="font-size:0.84rem; font-weight:600; color:#1e293b; background:#e2e8f0; padding:4px 10px; border-radius:4px;">No active dataset</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="export-grid">
+            <!-- 1. Executive Summary -->
+            <div class="export-card">
+              <div>
+                <div class="export-card-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  Executive Profiling Report
+                </div>
+                <p class="export-card-desc">Downloadable multi-page PDF summary report featuring executive KPIs, column health distributions, deterministic observations, and quality issue inventories.</p>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:8px; width:100%;">
+                <button type="button" id="btn-export-executive-pdf" class="btn-primary" style="width:100%;">Download Executive Report (PDF)</button>
+                <button type="button" id="btn-export-executive" class="btn-outline" style="width:100%;">Preview HTML Report</button>
+              </div>
+            </div>
+
+            <!-- 2. Data Dictionary -->
+            <div class="export-card">
+              <div>
+                <div class="export-card-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+                  Data Dictionary (CSV)
+                </div>
+                <p class="export-card-desc">Complete tabular data dictionary containing inferred types, completeness %, uniqueness, distribution moments (mean, std dev, skewness, outliers), and health flags.</p>
+              </div>
+              <button type="button" id="btn-export-dictionary" class="btn-outline" style="width:100%;">Export Data Dictionary (CSV)</button>
+            </div>
+
+            <!-- 3. Quality Audit JSON -->
+            <div class="export-card">
+              <div>
+                <div class="export-card-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  Quality Audit (JSON)
+                </div>
+                <p class="export-card-desc">Machine-readable audit specification detailing hygiene dimensions (completeness, uniqueness, validity), score deduction formulas, and discrete quality issues.</p>
+              </div>
+              <button type="button" id="btn-export-quality-json" class="btn-outline" style="width:100%;">Download Quality Audit (JSON)</button>
+            </div>
+
+            <!-- 4. Active CSV Dataset -->
+            <div class="export-card">
+              <div>
+                <div class="export-card-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                  Active Transformed Dataset (CSV)
+                </div>
+                <p class="export-card-desc">Download the current active dataset reflecting all applied cleaning operations, schema additions/removals, and imputed records in clean RFC 4180 CSV format.</p>
+              </div>
+              <button type="button" id="btn-export-dataset-csv" class="btn-outline" style="width:100%;">Download Active Dataset (CSV)</button>
+            </div>
+
+            <!-- 5. Audit Trail Log -->
+            <div class="export-card">
+              <div>
+                <div class="export-card-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Audit Trail History (CSV)
+                </div>
+                <p class="export-card-desc">Complete time-stamped log of every user action performed in this session (dataset uploads, filter executions, cleaning transforms, rules, and exports).</p>
+              </div>
+              <button type="button" id="btn-export-audit-csv" class="btn-outline" style="width:100%;">Download Audit Trail (CSV)</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 12: HISTORY & AUDIT
+             ========================================== -->
+        <section id="section-history" class="page-section">
+          <!-- Page Header Banner -->
+          <div class="page-header-banner">
+            <div class="page-header-text">
+              <h2 class="page-header-title">Dataset Upload &amp; Version History</h2>
+              <p class="page-header-subtitle">Inspect historical dataset snapshots, file sizes, quality metrics, and switch the active working dataset.</p>
+            </div>
+            <div class="page-header-actions">
+              <button type="button" id="btn-refresh-history-top" class="btn-refresh" title="Reload History">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                  <path d="M3 3v5h5"/>
+                </svg>
+                <span>Refresh List</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- History KPIs Grid -->
+          <div class="history-kpis-grid">
+            <div class="history-kpi-card">
+              <div class="history-kpi-icon icon-datasets">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+              </div>
+              <div class="history-kpi-content">
+                <div class="history-kpi-label">Stored Datasets</div>
+                <div id="hist-total-count" class="history-kpi-value">0</div>
+              </div>
+            </div>
+
+            <div class="history-kpi-card">
+              <div class="history-kpi-icon icon-active">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <div class="history-kpi-content">
+                <div class="history-kpi-label">Active Working Dataset</div>
+                <div id="hist-active-name" class="history-kpi-value" style="font-size:0.95rem; font-weight:600;">No dataset active</div>
+              </div>
+            </div>
+
+            <div class="history-kpi-card">
+              <div class="history-kpi-icon icon-score">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              </div>
+              <div class="history-kpi-content">
+                <div class="history-kpi-label">Average Quality</div>
+                <div id="hist-avg-score" class="history-kpi-value">0%</div>
+              </div>
+            </div>
+
+            <div class="history-kpi-card">
+              <div class="history-kpi-icon icon-records">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect width="18" height="18" x="3" y="3" rx="2"/>
+                  <path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+                </svg>
+              </div>
+              <div class="history-kpi-content">
+                <div class="history-kpi-label">Total Rows Profiled</div>
+                <div id="hist-total-rows" class="history-kpi-value">0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- History Table Card -->
+          <div class="card history-table-card">
+            <div class="card-header-flex">
+              <div class="card-header-title-wrap">
+                <h3 class="card-title" style="margin-bottom:4px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                    <path d="M3 3v5h5"/>
+                    <path d="M12 7v5l4 2"/>
+                  </svg>
+                  Dataset Repository &amp; Audit Log
+                </h3>
+                <p class="card-subtitle-text">Historical records and snapshots preserved per user. Click "Activate" to load any stored dataset into your active session.</p>
+              </div>
+              <div class="history-filter-wrap">
+                <input type="text" id="history-search-input" class="form-control history-search" placeholder="Filter by filename or ID..." aria-label="Filter datasets" />
+              </div>
+            </div>
+
+            <div class="table-container history-table-wrap">
+              <table class="data-table history-table" id="history-data-table">
+                <thead>
+                  <tr>
+                    <th style="min-width:200px;">Dataset Name</th>
+                    <th style="min-width:145px;">Upload Timestamp</th>
+                    <th style="min-width:95px; text-align:right;">File Size</th>
+                    <th style="min-width:85px; text-align:right;">Rows</th>
+                    <th style="min-width:85px; text-align:right;">Columns</th>
+                    <th style="min-width:115px; text-align:center;">Quality Score</th>
+                    <th style="min-width:115px; text-align:center;">Status</th>
+                    <th style="min-width:110px; text-align:center;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="history-tbody">
+                  <tr>
+                    <td colspan="8" class="table-empty-row">No datasets uploaded yet</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Vanilla JavaScript Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/upload.js"></script>
+  <script src="js/explorer.js"></script>
+  <script src="js/charts.js"></script>
+</body>
+</html>
