@@ -2,13 +2,6 @@
 
 College Web Technology Project — Phase 1 (Frontend Foundation)
 
-## Phase 1 Overview
-Phase 1 implements the complete frontend structure of DataLens using **Pure HTML5, CSS3, and Vanilla JavaScript (ES6+)**.
-
-- **No React / Angular / Vue**
-- **No Node.js / Express backend**
-- **No API Keys or AI services**
-- **No fake data or simulated database records**
 
 ## Project Architecture
 ```
